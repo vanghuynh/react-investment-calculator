@@ -11,6 +11,8 @@ function App() {
     duration: 10,
   });
 
+  const isInputValid = userInput.duration > 0;
+
   function handleChange(inputIdentifier, newValue) {
     setUserInput((previousInput) => {
       return {
@@ -24,7 +26,10 @@ function App() {
     <>
       <Header userInput={userInput} />
       <UserInput userInput={userInput} onInputChange={handleChange} />
-      <Results userInput={userInput} />
+      {!isInputValid && (
+        <p className="center">Please input duration greater than zoro.</p>
+      )}
+      {isInputValid && <Results userInput={userInput} />}
     </>
   );
 }
